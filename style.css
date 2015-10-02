@@ -1,0 +1,109 @@
+/* TODO: add captions, the last step for a basic figure; */
+
+/* border-box has been set in bootstrap
+   width and height decides element sizes
+   margins should be used for the spaces
+   in between, more like styling.
+*/
+
+div,
+section,
+article,
+figure,
+figcaption,
+img,
+p,
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	padding: 0;
+}
+
+img {
+	width: 100%;
+}
+
+article {
+	width: 80%;
+	margin: auto;
+}
+
+/* Header */
+
+/* ??? flex over inline-block or float and why? */
+header {
+	display: flex;
+	justify-content: space-between;
+}
+
+
+/* keep the total height for my-name and logo
+   the same, to align img with text
+*/
+.my-name {
+	text-align: center;
+	margin: 5px;
+}
+
+h1 {
+	color: #bcbbbb;
+}
+
+h4 {
+	color: #747704;
+}
+
+.logo {
+	margin: 10px;
+}
+
+.logo img {
+	height: 55px;
+	width: 55px;
+}
+
+
+
+
+/* overriding the bootstrap default */
+hr {
+	margin: 0 0 10px;
+	border-top: 3px solid #eee;
+	color: #bcbbbb;
+}
+
+.work-heading {
+	margin: 5px;
+	color: #bcbbbb;
+}
+
+.outlined-img {
+	border: 1px solid #eee;
+}
+
+
+/* Logo CSS Drawing  abanded due to inability
+   to adjust to different screen sizes.
+
+.logo {
+	width: 100px;
+	height: 100px;
+	border: 5px solid black;
+	border-radius: 50%;
+	float: left;
+}
+
+.logo-y {
+	position: absolute;
+	top: 6px;
+	left: 30px;
+	font-size: 64px;
+}
+*/
+
+
+
+
+
