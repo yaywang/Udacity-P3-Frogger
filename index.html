@@ -1,19 +1,19 @@
+<!--TODO: sort out the crazy srcset logo sizes and gallery sizes
+	TODO: read more about how on each srcset works
+	TODO: find out the loading time requirements of Google
+	TODO: customize styles
+-->
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, height=device-height initial-scale=1, maximum-scale=1, user-scalable=no">
-	<!-- bootStrap -->
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+	<meta name="viewport" content="width=device-width, height=device-height initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700,500'>
 
-	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-	<link rel="stylesheet" href="style.css">
+	<link rel="styelsheet" href="css/bootstrap.theme.min.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Yay Wang</title>
 
 </head>
@@ -21,7 +21,7 @@
 	<div class="container">
 		<header>
 			<div class="logo">
-					<img src="images/logo.png">
+					<img srcset="images/logo/logo-small.png 55w, images/logo/logo-normal.png 85w" src="images/logo/logo-normal.png">
 			</div>
 			<div class="my-name">
 				<h1>YAY WANG</h1>
@@ -32,30 +32,39 @@
 		<hr>
 
 		<section class="jumbo-img">
-			<img src="images/jumbo.png">
+			<img srcset="images/jumbo/jumbo-small.png 400w, images/jumbo/jumbo-medium.png 768w, images/jumbo/jumbo-large.png 1280w" src="images/jumbo-medium.png">
 		</section>
 
 		<section class="featured-work">
 			<div class="work-heading">
 				<h3>Featured Work</h3>
 			</div>
-			<div class="gallery">
-				<article>
+			<div class="gallery row">
+				<article class="col-sm-4">
 					<figure>
-						<img src="images/udacity-about-me.png" class="outlined-img">
-						<figcaption>About Me</figcaption>
+						<img srcset="images/about-me-small.png 500w, images/about-me-medium.png 1000w, images/about-me-large.png 1850w" src="images/about-me-medium.png" class="outlined-img">
+						<figcaption>ABOUT ME</figcaption>
+						<div class="project-link">
+							<a href="https://github.com/yaywang/Udacity-P0-About-Me">https://github.com/yaywang/Udacity-P0-About-Me</a>
+						</div>
 					</figure>
 				</article>
-				<article>
+				<article class="col-sm-4">
 					<figure>
-						<img src="images/udacity-resume.png" class="outlined-img">
-						<figcaption>Udacity Resume</figcaption>
+						<img srcset="images/resume-small.png 500w, images/resume-medium.png 1000w, images/resume-large.png 1850w" src="images/resume-medium.png" class="outlined-img">
+						<figcaption>RESUME</figcaption>
+						<div class="project-link">
+							<a href="https://github.com/yaywang/Udacity-P2-Resume">https://github.com/yaywang/Udacity-P2-Resume</a>
+						</div>
 					</figure>
 				</article>
-				<article>
+				<article class="col-sm-4">
 					<figure>
-						<img src="images/udacity-frogger.png">
-						<figcaption>Frogger</figcaption>
+						<img srcset="images/frogger-small.png 500w, images/frogger-medium.png 1000w, images/frogger-large.png 1850w" src="images/frogger-medium.png" class="outlined-img">
+						<figcaption>FROGGER</figcaption>
+						<div class="project-link">
+							<a href="https://github.com/yaywang/Udacity-P3-Frogger">https://github.com/yaywang/Udacity-P3-Frogger</a>
+						</div>
 					</figure>
 				</article>
 			</div>
