@@ -1,7 +1,7 @@
-<!--TODO: sort out the crazy srcset logo sizes and gallery sizes
-	TODO: read more about how on each srcset works
-	TODO: find out the loading time requirements of Google
--->
+<!-- TODO: sort out the big srcset logo sizes and gallery sizes,
+		   possibly related with retina display
+ -->
+<!-- TODO: find out the loading time requirements of Google -->
 
 <!DOCTYPE html>
 <html>
@@ -14,11 +14,8 @@
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-	</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8">
-	</script>
 
 	<title>Yay Wang</title>
 </head>
@@ -64,35 +61,43 @@
 				<h3>Featured Work</h3>
 			</div>
 			<div class="row">
-				<article class="col-sm-4">
-					<figure>
-						<img srcset="images/about-me-small.png 500w, images/about-me-medium.png 1000w, images/about-me-large.png 1850w" src="images/about-me-medium.png" alt="Simple webpage about me." class="img-outline">
-						<figcaption>ABOUT ME</figcaption>
-						<div class="project-link">
+				<article class="col-sm-4 folio">
+					<img srcset="images/about-me-small.png 500w, images/about-me-medium.png 1000w, images/about-me-large.png 1850w" src="images/about-me-medium.png" alt="Simple webpage about me." class="folio-img">
+					<div class="folio-description">
+						<div class="folio-name">
+							<h2>ABOUT ME</h2>
+						</div>
+						<div class="folio-link">
 							<a href="https://github.com/yaywang/Udacity-P0-About-Me">https://github.com/yaywang/Udacity-P0-About-Me</a>
 						</div>
-					</figure>
+					</div>
 				</article>
-				<article class="col-sm-4">
-					<figure>
-						<img srcset="images/resume-small.png 500w, images/resume-medium.png 1000w, images/resume-large.png 1850w" src="images/resume-medium.png" alt="A resume with interactive navigation bar."class="img-outline">
-						<figcaption>RESUME</figcaption>
-						<div class="project-link">
+				<article class="col-sm-4 folio">
+					<img srcset="images/resume-small.png 500w, images/resume-medium.png 1000w, images/resume-large.png 1850w" src="images/resume-medium.png" alt="A resume with interactive navigation bar."class="folio-img">
+					<div class="folio-description">
+						<div class="folio-name">
+							<h2>RESUME</h2>
+						</div>
+						<div class="folio-link">
 							<a href="https://github.com/yaywang/Udacity-P2-Resume">https://github.com/yaywang/Udacity-P2-Resume</a>
 						</div>
-					</figure>
+					</div>
 				</article>
-				<article class="col-sm-4">
-					<figure>
-						<img srcset="images/frogger-small.png 500w, images/frogger-medium.png 1000w, images/frogger-large.png 1850w" src="images/frogger-medium.png" alt="my version of the classic Frogger game." class="img-outline">
-						<figcaption>FROGGER</figcaption>
-						<div class="project-link">
+				<article class="col-sm-4 folio">
+					<img srcset="images/frogger-small.png 500w, images/frogger-medium.png 1000w, images/frogger-large.png 1850w" src="images/frogger-medium.png" alt="my version of the classic Frogger game." class="folio-img">
+					<div class="folio-description">
+						<div class="folio-name">
+							<h2>FROGGER</h2>
+						</div>
+						<div class="folio-link">
 							<a href="https://github.com/yaywang/Udacity-P3-Frogger">https://github.com/yaywang/Udacity-P3-Frogger</a>
 						</div>
-					</figure>
-				</article>
+					</div>
+			</article>
 			</div>
 		</section>
 	</div>
+
+	<script src="script.js"></script>
 </body>
 </html>

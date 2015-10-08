@@ -1,8 +1,6 @@
 div,
 section,
 article,
-figure,
-figcaption,
 img,
 p,
 h1,
@@ -23,16 +21,21 @@ img {
 /* Header */
 
 
-/* ??? flex over inline-block or float and why? */
+/* ??? flex over inline-block or float and why */
+/* flex chosen over minor style preferences, esp.
+   .my-name class text centering at small screen sizes
+ */
 header {
 	display: flex;
+	display: -webkit-flex;
 	justify-content: space-between;
+	-webkit-justify-content: space-between;
 }
 
 
-/* this keeps the total height for my-name and logo
+/* keeps the total height for my-name and logo
    the same, to align img with text
-*/
+ */
 .logo {
 	margin: 10px;
 }
@@ -63,15 +66,14 @@ h4 {
 }
 
 
-/* overriding the bootstrap default */
+/* overrides the bootstrap default */
 hr {
 	margin: 0 0 10px;
-	border-top: 3px solid #eee;
-	color: #747704;
+	border-top: 3px solid #afb224;
 }
 
 
-/* Main sections */
+/* Main contents */
 
 .work-heading {
 	margin: 15px 5px 5px;
@@ -79,49 +81,85 @@ hr {
 
 
 h3 {
-	color: #bcbbbb;
+	color: #afb224;
 	font-weight: normal;
 	font-size: 1.5em;
 }
 
 
-.img-outline {
-	border: 1px solid #eee;
-}
+/* the portfolio gallery */
 
-
-figure {
+.folio {
 	margin-bottom: 20px;
+	position: relative;
 }
 
 
-figcaption {
+.folio-img {
+	border: 1px solid #afb224;
+}
+
+
+.folio-description {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+
+.folio-name {
+	margin-top: 20%;
 	text-align: center;
-	color: #747704;
-	font-weight: 500;
-	font-size: 1.5em;
 }
 
 
-.project-link {
+h2 {
+	color: #40abff;
+	font-weight: 700;
+	font-size: 2em;
+}
+
+/* spacing for the links */
+.folio-link {
 	width: 80%;
 	margin: auto;
 	text-align: center;
 }
 
 
-/* break-word effects display sizes
-   slightly above 768 px.
-*/
-a {
-	word-wrap:break-word;
-	font-size: 0.7em;
-	color: #747704;
-	text-decoration: none;
+/* classes toggled by Jquery mouse events */
+
+.active {
+	display: block;
 }
 
 
-/* Media query for lager screen sizes */
+.dim {
+	opacity: 0.2;
+	z-index: -2;
+}
+
+
+/* break-word take effect on display sizes
+   just above 768 px.
+ */
+a,
+a:focus {
+	word-wrap:break-word;
+	font-weight: 500;
+	font-size: 0.7em;
+	color: #40abff;
+}
+
+
+a:focus {
+	font-size: 1em;
+}
+
+/* Media query for larger screen sizes */
 
 @media (min-width: 768px) {
 	.logo-img {
@@ -139,5 +177,3 @@ a {
 		margin-bottom: 20px;
 	}
 }
-
-

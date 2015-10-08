@@ -116,10 +116,10 @@ module.exports = function(grunt) {
         globals: {
           jQuery: true
         },
-        ignores: ['js/jQuery.js', 'js/modernizr.js' ,'js/html-inspector.js']
+        ignores: ['js/jQuery.js']
       },
       src: {
-        src: 'js/*.js'
+        src: '*.js'
       }
     },
 
