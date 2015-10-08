@@ -1,7 +1,6 @@
 <!--TODO: sort out the crazy srcset logo sizes and gallery sizes
 	TODO: read more about how on each srcset works
 	TODO: find out the loading time requirements of Google
-	TODO: customize the carousal control
 -->
 
 <!DOCTYPE html>
@@ -27,7 +26,8 @@
 	<div class="container">
 		<header>
 			<div class="logo">
-					<img srcset="images/logo/logo-small.png 55w, images/logo/logo-normal.png 85w" src="images/logo/logo-normal.png">
+					<img srcset="images/logo/logo-small.png 55w, images/logo/logo-normal.png 85w" src="images/logo/logo-normal.png" alt="Udacity Logo"
+					class="logo-img">
 			</div>
 			<div class="my-name">
 				<h1>YAY WANG</h1>
@@ -37,14 +37,14 @@
 
 		<hr>
 
-		<section id="carousel-example-generic" class="carousel slide jumbo-img" data-ride="carousel">
+		<section id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 		  	<!-- Wrapper for slides -->
 		  	<div class="carousel-inner" role="listbox">
 		    	<div class="item active">
-					<img srcset="images/jumbo/html-small.png 400w, images/jumbo/html-medium.png 768w, images/jumbo/html-large.png 1280w" src="imagesjumbo/html-medium.png">
+					<img srcset="images/jumbo/html-small.png 400w, images/jumbo/html-medium.png 768w, images/jumbo/html-large.png 1280w" src="images/jumbo/html-medium.png" alt="Jumbo sreenshot of HTML coding">
 		    	</div>
 			    <div class="item">
-			      <img srcset="images/jumbo/js-small.png 400w, images/jumbo/js-medium.png 768w, images/jumbo/js-large.png 1280w" src="images/jumbo/js-medium.png">
+			      <img srcset="images/jumbo/js-small.png 400w, images/jumbo/js-medium.png 768w, images/jumbo/js-large.png 1280w" src="images/jumbo/js-medium.png" alt="Jumbo screenshot of javascript coding">
 			    </div>
 		  	</div>
 
@@ -59,14 +59,14 @@
 		  	</a>
 		</section>
 
-		<section class="featured-work">
+		<section>
 			<div class="work-heading">
 				<h3>Featured Work</h3>
 			</div>
-			<div class="gallery row">
+			<div class="row">
 				<article class="col-sm-4">
 					<figure>
-						<img srcset="images/about-me-small.png 500w, images/about-me-medium.png 1000w, images/about-me-large.png 1850w" src="images/about-me-medium.png" class="outlined-img">
+						<img srcset="images/about-me-small.png 500w, images/about-me-medium.png 1000w, images/about-me-large.png 1850w" src="images/about-me-medium.png" alt="Simple webpage about me." class="img-outline">
 						<figcaption>ABOUT ME</figcaption>
 						<div class="project-link">
 							<a href="https://github.com/yaywang/Udacity-P0-About-Me">https://github.com/yaywang/Udacity-P0-About-Me</a>
@@ -75,7 +75,7 @@
 				</article>
 				<article class="col-sm-4">
 					<figure>
-						<img srcset="images/resume-small.png 500w, images/resume-medium.png 1000w, images/resume-large.png 1850w" src="images/resume-medium.png" class="outlined-img">
+						<img srcset="images/resume-small.png 500w, images/resume-medium.png 1000w, images/resume-large.png 1850w" src="images/resume-medium.png" alt="A resume with interactive navigation bar."class="img-outline">
 						<figcaption>RESUME</figcaption>
 						<div class="project-link">
 							<a href="https://github.com/yaywang/Udacity-P2-Resume">https://github.com/yaywang/Udacity-P2-Resume</a>
@@ -84,7 +84,7 @@
 				</article>
 				<article class="col-sm-4">
 					<figure>
-						<img srcset="images/frogger-small.png 500w, images/frogger-medium.png 1000w, images/frogger-large.png 1850w" src="images/frogger-medium.png" class="outlined-img">
+						<img srcset="images/frogger-small.png 500w, images/frogger-medium.png 1000w, images/frogger-large.png 1850w" src="images/frogger-medium.png" alt="my version of the classic Frogger game." class="img-outline">
 						<figcaption>FROGGER</figcaption>
 						<div class="project-link">
 							<a href="https://github.com/yaywang/Udacity-P3-Frogger">https://github.com/yaywang/Udacity-P3-Frogger</a>
