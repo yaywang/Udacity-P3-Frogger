@@ -381,8 +381,12 @@
     "@hr-border": "@gray-lighter"
   },
   "css": [
-    "grid.less"
+    "grid.less",
+    "glyphicons.less",
+    "carousel.less"
   ],
-  "js": [],
-  "customizerUrl": "http://getbootstrap.com/customize/?id=c8963bfa3dda8b472137"
+  "js": [
+    "carousel.js"
+  ],
+  "customizerUrl": "http://getbootstrap.com/customize/?id=6fe6e993cb19f2a8bd68"
 }
