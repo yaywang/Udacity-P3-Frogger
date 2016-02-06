@@ -11,19 +11,14 @@
 /* The scoring mechanism
  * Getting hit will lose you 50. Passing through will earn you 100. 
  */
-var score = 1000;
-document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
 
-function loseScore() {
-    score -= 50;
-    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
+var score = {};
+score.value = 1000;
+score.update = function(ds) {
+    score.value += ds;
+    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.value.toString();
 }
-
-function earnScore() {
-    score += 100;
-    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
-}
-
+score.update(0)
 
 // Enemies our player must avoid
 var Enemy = function() {
@@ -78,7 +73,7 @@ Player.prototype.render = function() {
 Player.prototype.checkBoundaries = function() {
     if (this.y == -83) {
         // The player reaches the top
-        earnScore();
+        score.update(100);
 
         this.y = 415;
     } else if (this.y == 498) {
@@ -130,7 +125,7 @@ function checkCollisions(player) {
         var disX = player.x - enemy.x;
         var disY = player.y - enemy.y;
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
-            loseScore();
+            score.update(-50);
             player.y = 415;
 
         }
