@@ -8,6 +8,23 @@
    var matrix = {
 }*/
 
+/* The scoring mechanism
+ * Getting hit will lose you 50. Passing through will earn you 100. 
+ */
+var score = 1000;
+document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
+
+function loseScore() {
+    score -= 50;
+    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
+}
+
+function earnScore() {
+    score += 100;
+    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.toString();
+}
+
+
 // Enemies our player must avoid
 var Enemy = function() {
     // initial positions are randomized, to a few enemies always appear new
@@ -60,6 +77,9 @@ Player.prototype.render = function() {
 
 Player.prototype.checkBoundaries = function() {
     if (this.y == -83) {
+        // The player reaches the top
+        earnScore();
+
         this.y = 415;
     } else if (this.y == 498) {
         this.y = 415;
@@ -110,7 +130,9 @@ function checkCollisions(player) {
         var disX = player.x - enemy.x;
         var disY = player.y - enemy.y;
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
+            loseScore();
             player.y = 415;
+
         }
     }
 }
