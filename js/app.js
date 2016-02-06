@@ -109,16 +109,9 @@ Player.prototype.handleInput = function(key) {
 
 //instantiate all enemies and the player
 var allEnemies = [];
-allEnemies[0] = new Enemy();
-allEnemies[1] = new Enemy();
-allEnemies[2] = new Enemy();
-allEnemies[3] = new Enemy();
-allEnemies[4] = new Enemy();
-allEnemies[5] = new Enemy();
-allEnemies[6] = new Enemy();
-allEnemies[7] = new Enemy();
-allEnemies[8] = new Enemy();
-allEnemies[9] = new Enemy();
+for (i = 0; i++; i < 10) {
+    allEnemies[i] = new Enemy();
+}
 
 var player = new Player();
 
