@@ -73,13 +73,18 @@ Player.prototype.checkBoundaries = function() {
     if (this.y == -83) {
         // The player reaches the top
         score.update(100);
+        this.y = 415;
+    }
+    
+    if (this.y == 498) {
+        this.y = 415;
+    } 
 
-        this.y = 415;
-    } else if (this.y == 498) {
-        this.y = 415;
-    } else if (this.x == -101) {
+    if (this.x == -101) {
         this.x = 0;
-    } else if (this.x == 505) {
+    } 
+
+    if (this.x == 505) {
         this.x = 404;
     }
 };
