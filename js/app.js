@@ -8,12 +8,10 @@
    var matrix = {
 }*/
 
-/* The scoring mechanism
- * Getting hit will lose you 50. Passing through will earn you 100. 
- */
-
+// The scoring mechanism
 var score = {};
 score.value = 1000;
+// ds could be a negative number to decrease the score, and 0 if the score does not change
 score.update = function(ds) {
     score.value += ds;
     document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.value.toString();
@@ -37,6 +35,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    // TODO: write a comment to state the value of Math.random()
     var speed = 100 + Math.random() * 300;
     this.x += speed * dt;
     // randomize and assign the new initial positions
@@ -127,7 +126,6 @@ function checkCollisions(player) {
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
             score.update(-50);
             player.y = 415;
-
         }
     }
 }
