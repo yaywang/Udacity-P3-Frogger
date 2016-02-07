@@ -14,7 +14,7 @@ score.value = 1000;
 // ds could be a negative number to decrease the score, and 0 if the score does not change
 score.update = function(ds) {
     score.value += ds;
-    document.body.getElementsByClassName('score')[0].getElementsByTagName('h3')[0].textContent = 'Score : ' + score.value.toString();
+    document.body.getElementsByClassName('score')[0].textContent = 'Score : ' + score.value.toString();
 }
 score.update(0)
 

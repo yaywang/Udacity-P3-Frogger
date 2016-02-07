@@ -6,7 +6,7 @@ body {
 	display: flex;
 }
 
-.score {
+.dashboard {
 	font-family: arial;
 	background-color: #eee; 
 	padding: 10px;
