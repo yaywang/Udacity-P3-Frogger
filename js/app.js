@@ -109,8 +109,9 @@ Player.prototype.handleInput = function(key) {
 
 //instantiate all enemies and the player
 var allEnemies = [];
-for (i = 0; i++; i < 10) {
-    allEnemies[i] = new Enemy();
+for (var i = 0; i < 10; i++) {
+    var newEnemy = new Enemy();
+    allEnemies.push(newEnemy);
 }
 
 var player = new Player();
