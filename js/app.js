@@ -29,6 +29,8 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+
+    this.speed = 100 + Math.random() * 300;
 };
  
 // Update the enemy's position, required method for game
@@ -37,9 +39,7 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // TODO: correct the speed so that one bug has the same speed all the time
-    var speed = 100 + Math.random() * 300;
-    this.x += speed * dt;
+    this.x += this.speed * dt;
     // Randomize and assign the new initial positions
     // when an enemy hits the right boundary
     if (this.x >= 550) {
