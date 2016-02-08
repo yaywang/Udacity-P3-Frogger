@@ -2,7 +2,7 @@
 
 // The scoring mechanism
 var score = {};
-score.value = 1000;
+score.value = 0;
 // Ds could be a negative number to decrease the score, and 0 if the score does not change
 score.update = function(ds) {
     score.value += ds;
@@ -14,7 +14,7 @@ score.update(0);
 var lives = {};
 lives.value = 3;
 lives.update = function(ds) {
-    score.value += ds;
+    lives.value += ds;
     document.body.getElementsByClassName('lives')[0].textContent = 'Lives: ' + lives.value.toString();
 };
 lives.update(0);
@@ -150,26 +150,28 @@ var allGems = [];
 
 // Check the play's collisions with the enemies and the gems
 function checkCollisions(player) {
-    // Drop player to initial position once it hits any enemy
+    // Drop player to initial position and lose one life once it hits any enemy
     for (var i = 0; i < allEnemies.length; i++) {
         var enemy = allEnemies[i];
         var disX = player.x - enemy.x;
         var disY = player.y - enemy.y;
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
-            score.update(-50);
+            lives.update(-1);
             player.y = 415;
         }
     }
 
     for (var i = 0; i < allGems.length; i++) {
         var gem = allGems[i];
-        var disX = player.x - gem.x;
-        var disY = player.y - gem.y;
-        if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
-            // Reward for getting a gem
-            score.update(1000);
-            // Set the endTime to now so the gem will disappear at the next frame
-            gem.endTime = Date.now();
+        if (gem.endTime > Date.now()) {
+            var disX = player.x - gem.x;
+            var disY = player.y - gem.y;
+            if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
+                // Reward for getting a gem
+                score.update(10);
+                // Set the endTime to now so the gem will disappear at the next frame
+                gem.endTime = Date.now();
+            }
         }
     }
 }
