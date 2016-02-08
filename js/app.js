@@ -1,7 +1,4 @@
 'use strict';
-//TODO: make pickoing sprites work
-
-
 //TODO: refactor all the canvas size based code
 //TODO: get new Enemy
 // new Enemy should come out at different speeds at different time points
@@ -128,8 +125,31 @@ document.getElementById('pink-girl').addEventListener('click', function() {
     player.sprite = 'images/char-pink-girl.png';
 });
 
-// drops player to initial position once it hits any enemy
+
+// All possible gem urls
+var gemList = ['images/gem-blue.png'];
+
+// The gems to get rewards
+var Gem = function(gemList) {
+    // Randomly pick a url from the gemList
+    this.gem = gemList[Math.floor(Math.random() * gemList.length)];
+    // The location for each gem is randomly set at anywhere on the stone block;
+    this.x = 101 * Math.floor(Math.random() * 5);
+    this.y = 61.5 + 83 * Math.floor(Math.random() * 3);
+    // Duration on screen in milliseconds
+    this.duration = 1000 + Math.random() * 3000;
+};
+
+Gem.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.gem), this.x, this.y);
+};
+
+// An array of all the gems produced. Empty at the beginning.
+var allGems = [];
+
+// Check the play's collisions with the enemies and the gems
 function checkCollisions(player) {
+    // drops player to initial position once it hits any enemy
     for (var i = 0; i < allEnemies.length; i++) {
         var enemy = allEnemies[i];
         var disX = player.x - enemy.x;
@@ -137,6 +157,18 @@ function checkCollisions(player) {
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
             score.update(-50);
             player.y = 415;
+        }
+    }
+
+    for (var i = 0; i < allGems.length; i++) {
+        var gem = allGems[i];
+        var disX = player.x - gem.x;
+        var disY = player.y - gem.y;
+        if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
+            // Reward for getting a gem
+            score.update(1000);
+            // Set the endTime to now so the gem will disappear at next frame
+            gem.endTime = Date.now();
         }
     }
 }

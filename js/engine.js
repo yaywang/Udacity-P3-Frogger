@@ -95,6 +95,14 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+
+        // Set the chance at any frame a new gem appears to one in 300
+        if (Math.floor(Math.random() * 300) == 0) {
+            var gem = new Gem(gemList);
+            // This sets the time when the gem disappears
+            gem.endTime = Date.now() + gem.duration;
+            allGems.push(gem);
+        }
     }
 
     /* This function initially draws the "game level", it will then call
@@ -135,7 +143,7 @@ var Engine = (function(global) {
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
- 
+
         renderEntities();
     }
 
@@ -152,6 +160,15 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+        /* Loop through all of the objects within the allGems array, and call 
+         * the render function on those that still appears.
+         */
+        allGems.forEach(function(gem) {
+            if (gem.endTime > Date.now()) {
+                gem.render();
+            }
+        });
     }
 
     /* This function does nothing but it could have been a good place to
@@ -172,7 +189,8 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/char-pink-girl.png'
+        'images/char-pink-girl.png',
+        'images/gem-blue.png'
     ]);
     Resources.onReady(init);
 
