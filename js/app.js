@@ -7,8 +7,18 @@ score.value = 1000;
 score.update = function(ds) {
     score.value += ds;
     document.body.getElementsByClassName('score')[0].textContent = 'Score : ' + score.value.toString();
-}
-score.update(0)
+};
+score.update(0);
+
+// The lives mechanism, similar to the scoring mechanism
+var lives = {};
+lives.value = 3;
+lives.update = function(ds) {
+    score.value += ds;
+    document.body.getElementsByClassName('lives')[0].textContent = 'Lives: ' + lives.value.toString();
+};
+lives.update(0);
+
 
 // Enemies our player must avoid
 var Enemy = function() {

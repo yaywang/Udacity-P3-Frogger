@@ -3,17 +3,45 @@ h4 {
 	margin: 0;
 }
 
-body {
-    text-align: center;
-}
-
 .main {
-	display: flex;
+    text-align: center;
+    background-color: #333;
 }
 
 .dashboard {
 	font-family: arial;
 	background-color: #eee; 
+    height: 90px;
+}
+
+.score,
+.lives,
+#boy,
+#pink-girl {
+	display: inline-block; 
+}
+
+.score,
+.lives {
+	vertical-align: 30px;
+	margin-right: 20px;
+	font-size: 24px;
 	padding: 10px;
-    margin: 3px;
+}
+
+.score {
+	background-color: #E0F7FA;
+}
+
+.lives {
+	background-color: #FFF59D;
+}
+
+#boy,
+#pink-girl {
+	height: 100%;
+}
+
+.canvas {
+	margin-top: -23px
 }
