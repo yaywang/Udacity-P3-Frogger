@@ -1,17 +1,9 @@
 'use strict';
-//TODO: refactor all the canvas size based code
-//TODO: get new Enemy
-// new Enemy should come out at different speeds at different time points
-//TODO: collisions
-//TODO: the matrix, helps pin Player's only possible locations
-/*
-   var matrix = {
-}*/
 
 // The scoring mechanism
 var score = {};
 score.value = 1000;
-// ds could be a negative number to decrease the score, and 0 if the score does not change
+// Ds could be a negative number to decrease the score, and 0 if the score does not change
 score.update = function(ds) {
     score.value += ds;
     document.body.getElementsByClassName('score')[0].textContent = 'Score : ' + score.value.toString();
@@ -20,29 +12,29 @@ score.update(0)
 
 // Enemies our player must avoid
 var Enemy = function() {
-    // initial positions are randomized, to a few enemies always appear new
+    // Initial positions are randomized, to a few enemies always appear new
     this.x = -1000 * Math.random();
-    // randomly assign the three possible y values: 61.5, 144.5, 227.5
+    // Randomly assign the three possible y values: 61.5, 144.5, 227.5
     this.y = 61.5 + 83 * Math.floor(Math.random() * 3);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 };
-
+ 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
-    // TODO: write a comment to state the value of Math.random()
+    // TODO: correct the speed so that one bug has the same speed all the time
     var speed = 100 + Math.random() * 300;
     this.x += speed * dt;
-    // randomize and assign the new initial positions
+    // Randomize and assign the new initial positions
     // when an enemy hits the right boundary
     if (this.x >= 550) {
         this.x = -1000 * Math.random();
-        // randomly assign the three possible values: 61.5, 144.5, 227.5
+        // Randomly assign the three possible values: 61.5, 144.5, 227.5
         this.y = 61.5 + 83 * Math.floor(Math.random() * 3);
     }
 };
@@ -52,14 +44,14 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-// the player
+// The player
 var Player = function() {
     this.x = 101 * Math.floor(Math.random() * 5);
     this.y = 415;
     this.sprite = 'images/char-boy.png';
 };
 
-// continuously check on collisions and hitting boundaries
+// Continuously check on collisions and boundary-hitting
 Player.prototype.update = function() {
     checkCollisions(this);
     this.checkBoundaries();
@@ -90,7 +82,6 @@ Player.prototype.checkBoundaries = function() {
 };
 
 Player.prototype.handleInput = function(key) {
-    // TODO: simplify with if statements
     switch (key) {
         case 'left':
             this.x -= 101;
@@ -107,7 +98,7 @@ Player.prototype.handleInput = function(key) {
     }
 };
 
-//instantiate all enemies and the player
+// Instantiate all enemies and the player
 var allEnemies = [];
 for (var i = 0; i < 10; i++) {
     var newEnemy = new Enemy();
@@ -149,7 +140,7 @@ var allGems = [];
 
 // Check the play's collisions with the enemies and the gems
 function checkCollisions(player) {
-    // drops player to initial position once it hits any enemy
+    // Drop player to initial position once it hits any enemy
     for (var i = 0; i < allEnemies.length; i++) {
         var enemy = allEnemies[i];
         var disX = player.x - enemy.x;
@@ -167,7 +158,7 @@ function checkCollisions(player) {
         if (disX <= 50 && disY <= 50 && disX >= -50 && disY >= -50) {
             // Reward for getting a gem
             score.update(1000);
-            // Set the endTime to now so the gem will disappear at next frame
+            // Set the endTime to now so the gem will disappear at the next frame
             gem.endTime = Date.now();
         }
     }
