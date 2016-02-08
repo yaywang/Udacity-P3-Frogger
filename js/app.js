@@ -1,4 +1,7 @@
 'use strict';
+//TODO: make pickoing sprites work
+
+
 //TODO: refactor all the canvas size based code
 //TODO: get new Enemy
 // new Enemy should come out at different speeds at different time points
@@ -115,6 +118,15 @@ for (var i = 0; i < 10; i++) {
 }
 
 var player = new Player();
+
+// Picking vehicle
+document.getElementById('boy').addEventListener('click', function() {
+    player.sprite = 'images/char-boy.png';
+ });
+
+document.getElementById('pink-girl').addEventListener('click', function() {
+    player.sprite = 'images/char-pink-girl.png';
+});
 
 // drops player to initial position once it hits any enemy
 function checkCollisions(player) {
