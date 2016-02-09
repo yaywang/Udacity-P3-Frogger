@@ -14,6 +14,8 @@
  * a little simpler to work with.
  */
 
+// TODO: use enter to restart the game
+
 var Engine = (function(global) {
     /* Predefine the variables we'll be using within this scope,
      * create the canvas element, grab the 2D context for that canvas
@@ -54,9 +56,14 @@ var Engine = (function(global) {
         lastTime = now;
 
         /* Use the browser's requestAnimationFrame function to call this
-         * function again as soon as the browser is able to draw another frame.
+         * function again as soon as the browser is able to draw another frame
+         * Terminate the loop if all lives have been lost
          */
-        win.requestAnimationFrame(main);
+        if (lives.value > 0) {
+            win.requestAnimationFrame(main);
+        } else {
+            reset();
+        }
     }
 
     /* This function does some initial setup that should only occur once,
@@ -64,7 +71,9 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        reset();
+        console.log('Initiated')
+        if (lives.value == 0) lives.update(3);
+        document.getElementsByClassName('game-over')[0].style.display = 'none';
         lastTime = Date.now();
         main();
     }
@@ -176,7 +185,7 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        document.getElementsByClassName('game-over')[0].style.display = 'block';
     }
 
     /* Go ahead and load all of the images we know we're going to need to
@@ -200,3 +209,10 @@ var Engine = (function(global) {
      */
     global.ctx = ctx;
 })(this);
+
+document.addEventListener('keyup', function(e) {
+    if (e.keyCode == 13) {
+        console.log('Enter clicked');
+        Engine;
+    }
+});

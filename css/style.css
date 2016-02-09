@@ -47,3 +47,24 @@ h4 {
 .canvas {
 	margin-top: -23px
 }
+
+.game-over {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+    opacity: 0.8;
+    background-color: #212121;
+}
+
+.notification {
+	background-color: #FAFAFA;
+    padding: 30px;
+    width: 300px;
+    margin: auto;
+    margin-top: 30%;
+}
+}

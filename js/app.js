@@ -1,5 +1,7 @@
 'use strict';
 
+var global = this;
+
 // The scoring mechanism
 var score = {};
 score.value = 0;
