@@ -65,6 +65,9 @@ h4 {
     padding: 30px;
     width: 300px;
     margin: auto;
-    margin-top: 30%;
 }
+
+.height-setter {
+	height: 35%;
+	width: 100%;
 }
