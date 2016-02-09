@@ -71,8 +71,11 @@ var Engine = (function(global) {
      * game loop.
      */
     function init() {
-        console.log('Initiated')
-        if (lives.value == 0) lives.update(3);
+        // Reset the score and lives values, and update them on the screen
+        score.value = 0;
+        lives.value = 3;
+        score.update(0);
+        lives.update(0);
         document.getElementsByClassName('game-over')[0].style.display = 'none';
         lastTime = Date.now();
         main();
@@ -203,6 +206,15 @@ var Engine = (function(global) {
     ]);
     Resources.onReady(init);
 
+    // Call init as the game over screen displays and enter key is pressed
+    document.addEventListener('keyup', function(e) {
+        if (document.getElementsByClassName('game-over')[0].style.display == 'block') {
+            if (e.keyCode == 13) {
+                init();
+            }
+        }
+    });
+
     /* Assign the canvas' context object to the global variable (the window
      * object when run in a browser) so that developer's can use it more easily
      * from within their app.js files.
@@ -210,9 +222,3 @@ var Engine = (function(global) {
     global.ctx = ctx;
 })(this);
 
-document.addEventListener('keyup', function(e) {
-    if (e.keyCode == 13) {
-        console.log('Enter clicked');
-        Engine;
-    }
-});
