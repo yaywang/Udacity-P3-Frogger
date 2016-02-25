@@ -25,14 +25,14 @@ lives.update(0);
 // Enemies our player must avoid
 var Enemy = function() {
     // Initial positions are randomized, to a few enemies always appear new
-    this.x = -1000 * Math.random();
+    this.x = -100 * Math.random();
     // Randomly assign the three possible y values: 61.5, 144.5, 227.5
     this.y = 61.5 + 83 * Math.floor(Math.random() * 3);
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
 
-    this.speed = 100 + Math.random() * 300;
+    this.speed = 100 * (Math.random() * 300);
 };
  
 // Update the enemy's position, required method for game
@@ -117,16 +117,21 @@ for (var i = 0; i < 10; i++) {
     allEnemies.push(newEnemy);
 }
 
+// // TODO: the speed variation algorithm
+// allEnemies.forEach(function(enemy) {
+//     enemy.x;
+// })
+
 var player = new Player();
 
 // Picking vehicle
-document.getElementById('boy').addEventListener('click', function() {
-    player.sprite = 'images/char-boy.png';
- });
+// document.getElementById('boy').addEventListener('click', function() {
+//     player.sprite = 'images/char-boy.png';
+//  });
 
-document.getElementById('pink-girl').addEventListener('click', function() {
-    player.sprite = 'images/char-pink-girl.png';
-});
+// document.getElementById('pink-girl').addEventListener('click', function() {
+//     player.sprite = 'images/char-pink-girl.png';
+// });
 
 
 // All possible gem urls
