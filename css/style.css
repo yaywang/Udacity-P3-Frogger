@@ -11,7 +11,7 @@ h4 {
 
 .dashboard {
 	font-family: arial;
-	background-color: #eee; 
+	background-color: #eee;
     height: 90px;
 }
 
@@ -19,7 +19,7 @@ h4 {
 .lives,
 #boy,
 #pink-girl {
-	display: inline-block; 
+	display: inline-block;
 }
 
 .score,
