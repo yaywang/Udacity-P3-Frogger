@@ -22,7 +22,6 @@ lives.update = function(ds) {
 };
 lives.update(0);
 
-
 // Enemies our player must avoid
 var Enemy = function() {
     // Boundaries:
@@ -67,7 +66,7 @@ Enemy.prototype.update = function(dt) {
 
     this.x += this.speed * dt;
 
-    //checkCollapsedBugs();
+    //this.checkCollapsedBugs();
 
     // Randomize and assign the new initial positions
     // when an enemy hits the right boundary
@@ -82,6 +81,23 @@ Enemy.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
+// Enemy.prototype.checkCollapsedBugs = function() {
+//     for (var i = 0; i < allEnemies.length; i++) {
+//         //console.log('Entering for loop in checkCollaspsedBugs');
+//         if (allEnemies[i].x <= 0) {
+//             for (var j = 0; j < allEnemies.length; j++) {
+//                 if (allEnemies[j].x <= 0) {
+//                     var xDist = allEnemies[j] - allEnemies[i];
+//                     if (allEnemies[i].y == allEnemies[j].y && xDist >= 0 && xDist <= 101) {
+//                         allEnemies[i].x = allEnemies[j].x;
+//                         // console.log('x changed');
+//                     }
+//                 }
+//             }
+//         }
+//     }
+// }
+
 // The player
 var Player = function() {
     this.x = 101 * Math.floor(Math.random() * 5);
@@ -91,12 +107,40 @@ var Player = function() {
 
 // Continuously check on collisions and boundary-hitting
 Player.prototype.update = function() {
-    checkCollisions(this);
+    this.collide();
     this.checkBoundaries();
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Check the player's collisions with the enemies and the gems
+Player.prototype.collide = function () {
+    // Drop player to initial position and lose one life once it hits any enemy
+    for (var i = 0; i < allEnemies.length; i++) {
+        var enemy = allEnemies[i];
+        var disToEnemyX = this.x - enemy.x;
+        var disToEnemyY = this.y - enemy.y;
+        if (disToEnemyX <= 50 && disToEnemyY <= 50 && disToEnemyX >= -50 && disToEnemyY >= -50) {
+            lives.update(-1);
+            this.y = 415;
+        }
+    }
+
+    for (var j = 0; j < allGems.length; j++) {
+        var gem = allGems[j];
+        if (gem.endTime > Date.now()) {
+            var disToGemX = this.x - gem.x;
+            var disToGemY = this.y - gem.y;
+            if (disToGemX <= 50 && disToGemY <= 50 && disToGemX >= -50 && disToGemY >= -50) {
+                // Reward for getting a gem
+                score.update(10);
+                // Set the endTime to now so the gem will disappear at the next frame
+                gem.endTime = Date.now();
+            }
+        }
+    }
 };
 
 Player.prototype.checkBoundaries = function() {
@@ -142,23 +186,6 @@ for (var i = 0; i < 22; i++) {
     allEnemies.push(newEnemy);
 }
 
-function checkCollapsedBugs() {
-    for (var i = 0; i < allEnemies.length; i++) {
-        //console.log('Entering for loop in checkCollaspsedBugs');
-        if (allEnemies[i].x <= 0) {
-            for (var j = 0; j < allEnemies.length; j++) {
-                if (allEnemies[j].x <= 0) {
-                    var xDist = allEnemies[j] - allEnemies[i];
-                    if (allEnemies[i].y == allEnemies[j].y && xDist >= 0 && xDist <= 101) {
-                        allEnemies[i].x = allEnemies[j].x;
-                        // console.log('x changed');
-                    }
-                }
-            }
-        }
-    }
-}
-
 var player = new Player();
 
 // Picking vehicle
@@ -169,7 +196,6 @@ var player = new Player();
 // document.getElementById('pink-girl').addEventListener('click', function() {
 //     player.sprite = 'images/char-pink-girl.png';
 // });
-
 
 // All possible gem urls
 var gemList = ['images/gem-blue.png'];
@@ -191,34 +217,6 @@ Gem.prototype.render = function() {
 
 // An array of all the gems produced. Empty at the beginning.
 var allGems = [];
-
-// Check the play's collisions with the enemies and the gems
-function checkCollisions(player) {
-    // Drop player to initial position and lose one life once it hits any enemy
-    for (var i = 0; i < allEnemies.length; i++) {
-        var enemy = allEnemies[i];
-        var disToEnemyX = player.x - enemy.x;
-        var disToEnemyY = player.y - enemy.y;
-        if (disToEnemyX <= 50 && disToEnemyY <= 50 && disToEnemyX >= -50 && disToEnemyY >= -50) {
-            lives.update(-1);
-            player.y = 415;
-        }
-    }
-
-    for (var j = 0; j < allGems.length; j++) {
-        var gem = allGems[j];
-        if (gem.endTime > Date.now()) {
-            var disToGemX = player.x - gem.x;
-            var disToGemY = player.y - gem.y;
-            if (disToGemX <= 50 && disToGemY <= 50 && disToGemX >= -50 && disToGemY >= -50) {
-                // Reward for getting a gem
-                score.update(10);
-                // Set the endTime to now so the gem will disappear at the next frame
-                gem.endTime = Date.now();
-            }
-        }
-    }
-}
 
 // This listens for key presses and sends the keys to
 // Player.handleInput() method.
