@@ -23,8 +23,14 @@ lives.update = function(ds) {
 };
 lives.update(0);
 
+var Sprite = function() {};
+Sprite.prototype.render = function() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
 // Enemies our player must avoid
 var Enemy = function() {
+    Sprite.call(this);
     // Boundaries:
     this.leftBound = -101;
     this.rightBound = 505;
@@ -56,6 +62,8 @@ var Enemy = function() {
     };
 };
 
+Enemy.prototype = Object.create(Sprite.prototype);
+Enemy.prototype.constructor = Sprite;
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
@@ -77,11 +85,6 @@ Enemy.prototype.update = function(dt) {
     }
 };
 
-// Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
 // Enemy.prototype.checkCollapsedBugs = function() {
 //     for (var i = 0; i < enemyNum; i++) {
 //         //console.log('Entering for loop in checkCollaspsedBugs');
@@ -101,19 +104,19 @@ Enemy.prototype.render = function() {
 
 // The player
 var Player = function() {
+    Sprite.call(this);
     this.x = 101 * Math.floor(Math.random() * 5);
     this.y = 415;
     this.sprite = 'images/char-boy.png';
 };
 
+Player.prototype = Object.create(Sprite.prototype);
+Player.prototype.constructor = Sprite;
+
 // Continuously check on collisions and boundary-hitting
 Player.prototype.update = function() {
     this.collide();
     this.checkBoundaries();
-};
-
-Player.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
 // Check the player's collisions with the enemies and the gems
@@ -129,7 +132,7 @@ Player.prototype.collide = function () {
         }
     }
 
-    for (var j = 0; j < allGems.length; j++) {
+    for (var j = 0, len = allGems.length; j < len; j++) {
         var gem = allGems[j];
         if (gem.endTime > Date.now()) {
             var disToGemX = this.x - gem.x;
@@ -203,8 +206,9 @@ var gemList = ['images/gem-blue.png'];
 
 // The gems to get rewards
 var Gem = function(gemList) {
+    Sprite.call(this);
     // Randomly pick a url from the gemList
-    this.gem = gemList[Math.floor(Math.random() * gemList.length)];
+    this.sprite = gemList[Math.floor(Math.random() * gemList.length)];
     // The location for each gem is randomly set at anywhere on the stone block;
     this.x = 101 * Math.floor(Math.random() * 5);
     this.y = 61.5 + 83 * Math.floor(Math.random() * 3);
@@ -212,11 +216,13 @@ var Gem = function(gemList) {
     this.duration = 1000 + Math.random() * 3000;
 };
 
-Gem.prototype.render = function() {
-    ctx.drawImage(Resources.get(this.gem), this.x, this.y);
-};
+Gem.prototype = Object.create(Sprite.prototype);
+Gem.prototype.constructor = Sprite;
 
-// Note that this could grow unnecessarily big.
+/* TODO: Note that this could grow unnecessarily big.
+ * since gems are generated upon frame updating
+ * all of them have to be stored in allGems.
+ */
 // An array of all the gems produced. Empty at the beginning.
 var allGems = [];
 
