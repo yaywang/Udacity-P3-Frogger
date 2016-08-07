@@ -1,7 +1,8 @@
 'use strict';
 
 var global = this,
-    allEnemies = [];
+    allEnemies = [],
+    enemyNum = 22;
 
 // The scoring mechanism
 var score = {};
@@ -46,7 +47,7 @@ var Enemy = function() {
     // Generate speed
     this.updateSpeed = function() {
         this.speed = this.initialSpeed;
-        for (var i = 0; i < allEnemies.length; i++) {
+        for (var i = 0; i < enemyNum; i++) {
             var xDistance = allEnemies[i].x - this.x;
             if (this.y == allEnemies[i].y && xDistance >= 0 && xDistance < 101) {
                 this.speed = allEnemies[i].speed;
@@ -82,10 +83,10 @@ Enemy.prototype.render = function() {
 };
 
 // Enemy.prototype.checkCollapsedBugs = function() {
-//     for (var i = 0; i < allEnemies.length; i++) {
+//     for (var i = 0; i < enemyNum; i++) {
 //         //console.log('Entering for loop in checkCollaspsedBugs');
 //         if (allEnemies[i].x <= 0) {
-//             for (var j = 0; j < allEnemies.length; j++) {
+//             for (var j = 0; j < enemyNum; j++) {
 //                 if (allEnemies[j].x <= 0) {
 //                     var xDist = allEnemies[j] - allEnemies[i];
 //                     if (allEnemies[i].y == allEnemies[j].y && xDist >= 0 && xDist <= 101) {
@@ -118,7 +119,7 @@ Player.prototype.render = function() {
 // Check the player's collisions with the enemies and the gems
 Player.prototype.collide = function () {
     // Drop player to initial position and lose one life once it hits any enemy
-    for (var i = 0; i < allEnemies.length; i++) {
+    for (var i = 0; i < enemyNum; i++) {
         var enemy = allEnemies[i];
         var disToEnemyX = this.x - enemy.x;
         var disToEnemyY = this.y - enemy.y;
@@ -181,7 +182,7 @@ Player.prototype.handleInput = function(key) {
 };
 
 // Instantiate all enemies and the player
-for (var i = 0; i < 22; i++) {
+for (var i = 0; i < enemyNum; i++) {
     var newEnemy = new Enemy();
     allEnemies.push(newEnemy);
 }
@@ -215,6 +216,7 @@ Gem.prototype.render = function() {
     ctx.drawImage(Resources.get(this.gem), this.x, this.y);
 };
 
+// Note that this could grow unnecessarily big.
 // An array of all the gems produced. Empty at the beginning.
 var allGems = [];
 
