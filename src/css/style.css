@@ -33,11 +33,11 @@ h4 {
 }
 
 .score {
-	background-color: #E0F7FA;
+	background-color: #e0f7fa;
 }
 
 .lives {
-	background-color: #FFF59D;
+	background-color: #fff59d;
 }
 
 #boy,
@@ -62,7 +62,7 @@ h4 {
 }
 
 .notification {
-	background-color: #FAFAFA;
+	background-color: #fafafa;
     padding: 30px;
     width: 300px;
     margin: auto;
